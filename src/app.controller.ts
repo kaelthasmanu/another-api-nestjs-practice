@@ -19,4 +19,9 @@ export class AppController {
   getProduct(@Param("id") id: string): string {
     return `Product ID: ${id}`;
   }
+
+  @Get("search/:query/:page")
+  getSearch(@Param() params): string {
+    return `Search Query: ${params.query}, Page: ${params.page}`;
+  }
 }
