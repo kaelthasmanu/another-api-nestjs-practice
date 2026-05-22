@@ -1,10 +1,14 @@
 import { Controller, Get, Param } from '@nestjs/common';
+import { PlayerService } from './player.service';
 
 @Controller('player')
 export class PlayerController {
+
+    constructor(private readonly playerService: PlayerService) {}
+
     @Get()
     getAllPlayers(): string {
-        return "All Players";
+        return this.playerService.getAllPlayers();
     }
 
     @Get(":id")
