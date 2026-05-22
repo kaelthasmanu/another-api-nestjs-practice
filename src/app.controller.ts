@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -15,4 +15,8 @@ export class AppController {
     return "Hello Manuel";
   }
 
+  @Get("product/:id")
+  getProduct(@Param("id") id: string): string {
+    return `Product ID: ${id}`;
+  }
 }
