@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Project } from './entities/project.entity';
+import { CreateProjectDto } from './dto/create-project.dto';
 
 const mock: Project[] = [
   {
@@ -24,5 +25,18 @@ const mock: Project[] = [
 export class ProjectsService {
   getManyProjects(): Project[] {
     return mock;
+  }
+  removeOneProject() {
+    throw new Error('Method not implemented.');
+  }
+  updateOneProject() {
+    throw new Error('Method not implemented.');
+  }
+  createOneProject(projectDTO: CreateProjectDto): Project {
+    const a = mock[0];
+    return {
+      ...a,
+      ...projectDTO,
+    };
   }
 }

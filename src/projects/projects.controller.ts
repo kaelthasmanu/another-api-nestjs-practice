@@ -6,9 +6,11 @@ import {
   HttpStatus,
   Patch,
   Post,
+  Body,
 } from '@nestjs/common';
 import { Project } from './entities/project.entity';
 import { ProjectsService } from './projects.service';
+import { CreateProjectDto } from './dto/create-project.dto';
 
 @Controller('projects')
 export class ProjectsController {
@@ -26,17 +28,17 @@ export class ProjectsController {
   }
   @HttpCode(HttpStatus.CREATED)
   @Post()
-  createOneProject(): string {
-    return 'This action creates a project';
+  createOneProject(@Body() projectDTO: CreateProjectDto) {
+    return this.projectsService.createOneProject(projectDTO);
   }
   @HttpCode(HttpStatus.OK)
   @Patch(':projectId')
-  partialUpdateOneProject(): string {
-    return 'This action updates a project';
+  partialUpdateOneProject() {
+    return this.projectsService.updateOneProject();
   }
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':projectId')
-  removeOneProject(): string {
-    return 'This action removes a project';
+  removeOneProject() {
+    return this.projectsService.removeOneProject();
   }
 }
