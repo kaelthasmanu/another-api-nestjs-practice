@@ -17,12 +17,12 @@ export class ProjectsController {
     return 'This action creates a project';
   }
 
-  @Patch()
+  @Patch(':projectId')
   partialUpdateOneProject(): string {
     return 'This action updates a project';
   }
 
-  @Delete()
+  @Delete(':projectId')
   removeOneProject(): string {
     return 'This action removes a project';
   }
