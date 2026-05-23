@@ -25,12 +25,8 @@ export class PlayerController {
   }
 
   @Post('create')
-  createPlayer(
-    @Body('name') name: string,
-    @Body('age') age: number,
-    @Body('team') team: string,
-  ): string {
-    return this.playerService.createPlayer(name, age, team);
+  createPlayer(@Body() body: Player): Player {
+    return this.playerService.createPlayer(body);
   }
 
   @Post('update/:id/:name')
