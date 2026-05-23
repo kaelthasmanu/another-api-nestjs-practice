@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { PlayerService } from './player.service';
 import { Player } from './player.entity';
 
@@ -12,8 +12,8 @@ export class PlayerController {
   }
 
   @Get(':id')
-  getPlayerById(@Param('id') id: string): Player | undefined {
-    return this.playerService.getPlayerById(Number(id));
+  getPlayerById(@Param('id', ParseIntPipe) id: number): Player | undefined {
+    return this.playerService.getPlayerById(id);
   }
 
   @Get('create/:name')
@@ -22,12 +22,15 @@ export class PlayerController {
   }
 
   @Get('update/:id/:name')
-  updatePlayer(@Param('id') id: string, @Param('name') name: string): string {
+  updatePlayer(
+    @Param('id', ParseIntPipe) id: number,
+    @Param('name') name: string,
+  ): string {
     return `Player ID: ${id} updated to ${name}`;
   }
 
   @Get('delete/:id')
-  deletePlayer(@Param('id') id: string): string {
+  deletePlayer(@Param('id', ParseIntPipe) id: number): string {
     return `Player ID: ${id} deleted`;
   }
 }
