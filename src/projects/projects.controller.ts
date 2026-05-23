@@ -8,38 +8,21 @@ import {
   Post,
 } from '@nestjs/common';
 import { Project } from './entities/project.entity';
-
-const mock = [
-  {
-    id: 1,
-    key: 'project-1',
-    title: 'Project 1',
-    description: 'Description of project 1',
-    plannedHours: new Date(),
-    owner: { id: 1, name: 'Owner 1' },
-  },
-  {
-    id: 2,
-    key: 'project-2',
-    title: 'Project 2',
-    description: 'Description of project 2',
-    plannedHours: new Date(),
-    owner: { id: 2, name: 'Owner 2' },
-  },
-];
+import { ProjectsService } from './projects.service';
 
 @Controller('projects')
 export class ProjectsController {
+  constructor(private readonly projectsService: ProjectsService) {}
   @HttpCode(HttpStatus.OK)
   @Get()
   getManyProjects(): Project[] {
-    return mock;
+    return this.projectsService.getManyProjects();
   }
 
   @HttpCode(HttpStatus.OK)
   @Get(':projectId')
   getOneProject(): Project {
-    return mock[0];
+    return this.projectsService.getManyProjects()[0];
   }
   @HttpCode(HttpStatus.CREATED)
   @Post()
