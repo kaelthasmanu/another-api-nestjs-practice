@@ -7,10 +7,12 @@ import {
   Patch,
   Post,
   Body,
+  Param,
 } from '@nestjs/common';
 import { Project } from './entities/project.entity';
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
+import { UpdateProjectDto } from './dto/update-project.dto';
 
 @Controller('projects')
 export class ProjectsController {
@@ -33,8 +35,11 @@ export class ProjectsController {
   }
   @HttpCode(HttpStatus.OK)
   @Patch(':projectId')
-  partialUpdateOneProject() {
-    return this.projectsService.updateOneProject();
+  partialUpdateOneProject(
+    @Param('projectId') projectId: string,
+    @Body() updateProjectDTO: UpdateProjectDto,
+  ) {
+    return this.projectsService.updateOneProject(projectId, updateProjectDTO);
   }
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':projectId')

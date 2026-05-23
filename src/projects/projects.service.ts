@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Project } from './entities/project.entity';
 import { CreateProjectDto } from './dto/create-project.dto';
+import { UpdateProjectDto } from './dto/update-project.dto';
 
 const mock: Project[] = [
   {
@@ -29,9 +30,22 @@ export class ProjectsService {
   removeOneProject() {
     throw new Error('Method not implemented.');
   }
-  updateOneProject() {
-    throw new Error('Method not implemented.');
+  updateOneProject(
+    projectId: string,
+    updateProjectDTO: UpdateProjectDto,
+  ): Project {
+    const project = mock.find((proj) => proj.id === parseInt(projectId, 10));
+    if (!project) {
+      throw new Error(`Project with id ${projectId} not found`);
+    }
+
+    return {
+      ...project,
+      ...updateProjectDTO,
+      id: project.id,
+    };
   }
+
   createOneProject(projectDTO: CreateProjectDto): Project {
     const a = mock[0];
     return {
