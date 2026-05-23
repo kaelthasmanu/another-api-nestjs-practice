@@ -16,4 +16,15 @@ export class PlayerService {
   getPlayerById(id: number): Player | undefined {
     return this.players.find((player) => player.id === id);
   }
+
+  createPlayer(name: string, age: number, team: string): string {
+    const newPlayer: Player = {
+      id: this.players.length + 1,
+      name,
+      age,
+      team,
+    };
+    this.players.push(newPlayer);
+    return `Player ${name} created`;
+  }
 }
