@@ -1,4 +1,29 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Delete, Get, Patch, Post } from '@nestjs/common';
 
 @Controller('projects')
-export class ProjectsController {}
+export class ProjectsController {
+  @Get()
+  getManyProjects(): string {
+    return 'This action returns all projects';
+  }
+
+  @Get(':projetcId')
+  getOneProject(): string {
+    return 'This action returns one project';
+  }
+
+  @Post()
+  createOneProject(): string {
+    return 'This action creates a project';
+  }
+
+  @Patch()
+  partialUpdateOneProject(): string {
+    return 'This action updates a project';
+  }
+
+  @Delete()
+  removeOneProject(): string {
+    return 'This action removes a project';
+  }
+}
