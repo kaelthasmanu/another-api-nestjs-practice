@@ -10,17 +10,17 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get("two")
-  getTwo():string {
-    return "Hello Manuel";
+  @Get('two')
+  getTwo(): string {
+    return 'Hello Manuel';
   }
 
-  @Get("product/:id")
-  getProduct(@Param("id") id: string): string {
+  @Get('product/:id')
+  getProduct(@Param('id') id: string): string {
     return `Product ID: ${id}`;
   }
 
-  @Get("search/:query/:page")
+  @Get('search/:query/:page')
   getSearch(@Param() params): string {
     return `Search Query: ${params.query}, Page: ${params.page}`;
   }
